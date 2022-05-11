@@ -72,7 +72,7 @@ def pretrain_ae(model, args, cuda0, cuda1, loss_cuda):
     if os.path.isfile(args.pretrain_checkpoint):
         print("=> loading pretrain checkpoint '{}'".format(
             args.pretrain_checkpoint))
-        pretrain_checkpoint = torch.load(args.pretrain_checkpoint)
+        pretrain_checkpoint = torch.load(args.pretrain_checkpoint, map_location='cuda:0')
         start_iteration = pretrain_checkpoint["iteration"] + 1
         is_pretrain = pretrain_checkpoint["pretrain"]
         autoencoder.load_state_dict(pretrain_checkpoint["autoencoder"])
